@@ -16,6 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+#need for image processing
+from django.conf import settings
+from django.conf.urls.static import static
+
+#for home funtion
+from imageapp import views as image_views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('home/', image_views.home, name='home'),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #for image processing (Serving files uploaded by a user )
